@@ -17,7 +17,11 @@ export class RegisterUserDto {
         if (!email ) return ['Email is required']
         if( !Validators.email.test(email) ) return ['Invalid email']
         if (!password ) return ['Password is required']
+        if ( password.length < 6 ) return ['Password too shorts']
         
-        return []
+        return [
+            undefined,
+            new RegisterUserDto(name, email, password)
+        ]
     }
 }
