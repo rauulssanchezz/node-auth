@@ -1,7 +1,5 @@
 
 
-throw new Error()
-
 export class CustomError extends Error {
     constructor(
         public readonly statusCode: number,
