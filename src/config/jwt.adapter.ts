@@ -1,11 +1,20 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 
+export class JwtAdapter {
 
-export class Jwt {
+    static async generateToken( payload: Object, duration: number = 7200 ): Promise<string|null> {
 
-    static async generateToken( payload: Object, duration: string = '2h' ) {
+        return new Promise( ( resolve ) => {
 
-        
+            jwt.sign( payload, 'SEED', { expiresIn: duration }, (err, token) => {
+                
+                if (err) return resolve(null)
+
+                resolve(token!)
+
+            })
+
+        } )
 
     }
 
